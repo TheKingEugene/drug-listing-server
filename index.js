@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require ("express");
 const mysql = require("mysql");
 const app = express();
@@ -21,4 +22,20 @@ app.get("/api/chemist", (req, res) => {
     
 });
 
+app.get("/api/chemist/:Business_Number", (req, res) => {
+    pool.query(
+        "SELECT Business_Number, Name FROM chemist WHERE Business_Number = ?",
+        [req.params.Business_Number],
+        (error, rows) => {
+            if (error) {
+                return res.status(500).json({error});
+            }
+
+            res.json(rows);
+        }
+    );
+});
 app.listen(9000, () => console.log("App listening to port 9000"));
+
+
+
