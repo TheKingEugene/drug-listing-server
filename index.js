@@ -9,9 +9,12 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME
 });
 
-app.get("/api/chemist", (req, res) => {
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.get("/api/chemist/", (req, res) => {
     //fetching from chemist
-    pool.query("SELECT Business_Number, Name FROM chemist", (error, rows) => {
+    pool.query("SELECT Business_Number, Chemist FROM chemist", (error, rows) => {
         if (error){
             return res.status(500).json({error});
         }
@@ -22,20 +25,39 @@ app.get("/api/chemist", (req, res) => {
     
 });
 
-app.get("/api/chemist/:Business_Number", (req, res) => {
+app.get("/api/chemist/eugene", (req, res) =>{
     pool.query(
-        "SELECT Business_Number, Name FROM chemist WHERE Business_Number = ?",
-        [req.params.Business_Number],
+        `select c.chemist, c.location, d.drug, cc.phone_number, bt.working_hours from chemist c 
+        JOIN drug d ON d.business_number = c.business_number
+        JOIN chemist_contacts cc ON cc.business_number = c.business_number
+        JOIN business_time bt ON bt.business_number = c.business_number`,
         (error, rows) => {
             if (error) {
                 return res.status(500).json({error});
             }
+            res.json(rows);
+        }  
+    );
+});
 
+app.get("/api/drug/", (req, res) =>{
+    pool.query(
+        `SELECT d.drug, d.description, d.price, c.chemist from drug d
+        JOIN chemist c ON c.business_number = d.business_number`,
+        (error, rows) =>{
+            if (error){
+                return res.status(500).json({error});
+            }
             res.json(rows);
         }
     );
 });
+
+app.get("/api/drug/", (req, res) =>{
+    pool.query(
+        ``
+    )
+})
+
 app.listen(9000, () => console.log("App listening to port 9000"));
-
-
 
