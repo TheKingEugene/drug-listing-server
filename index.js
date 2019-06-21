@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/api/chemist/", (req, res) => {
-    //fetching from chemist
     pool.query("SELECT Business_Number, Chemist FROM chemist", (error, rows) => {
         if (error){
             return res.status(500).json({error});
@@ -53,11 +52,42 @@ app.get("/api/drug/", (req, res) =>{
     );
 });
 
-app.get("/api/drug/", (req, res) =>{
+app.post("/api/Chemist/tke", (req, res) =>{
+    const Chemist = req.body;
+    
+
+    if(!Chemist.Chemist){
+        return res.status(400).json({error: "Invalid payload"})
+    }
+    pool.querry(
+        "INSERT INTO Chemist (Chemist) VALUES (?)",
+        [Chemist.Chemist],
+        (error, results) =>{
+            if (error){
+                return res.status(500).jason({error});
+            }
+        res.json(results.insertId);
+        }
+    );
+});
+
+app.put("/api/chemist/id", (req, res) =>{
+    const chemist = req.body;
+
+    if (!Chemist.Chemist){
+        return res.status(400).json({error: "Invalid payload"});
+    }
     pool.query(
-        ``
-    )
-})
+        "UPDATE chemist SET ame = ? WHERE id  = ?",
+        [chemist.Chemist, re.params.id],
+        (error, results) => {
+            if (error){
+                return res.status(500).json({error});
+            }
+            res.json(results.changedRows);
+        }
+    );
+});
 
 app.listen(9000, () => console.log("App listening to port 9000"));
 
