@@ -20,8 +20,7 @@ app.get("/api/chemist/", (req, res) => {
 
         res.json(rows);
 
-    });
-    
+    });  
 });
 
 app.get("/api/chemist/eugene", (req, res) =>{
@@ -78,7 +77,7 @@ app.put("/api/chemist/id", (req, res) =>{
         return res.status(400).json({error: "Invalid payload"});
     }
     pool.query(
-        "UPDATE chemist SET ame = ? WHERE id  = ?",
+        "UPDATE chemist SET Chemist = ? WHERE id  = ?",
         [chemist.Chemist, re.params.id],
         (error, results) => {
             if (error){
@@ -88,6 +87,11 @@ app.put("/api/chemist/id", (req, res) =>{
         }
     );
 });
+
+
+
+
+
 
 app.listen(9000, () => console.log("App listening to port 9000"));
 
