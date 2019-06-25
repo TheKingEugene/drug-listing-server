@@ -83,6 +83,7 @@ app.put("/api/Chemist/id", (req, res) => {
         (error, results) => {
             if (error) {
                 return res.status(500).json({ error });
+                
             }
             res.json(results.changedRows);
         }
