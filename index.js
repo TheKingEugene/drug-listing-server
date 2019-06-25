@@ -1,5 +1,5 @@
 require("dotenv").config();
-const express = require ("express");
+const express = require("express");
 const mysql = require("mysql");
 const app = express();
 const pool = mysql.createPool({
@@ -14,16 +14,16 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/api/chemist/", (req, res) => {
     pool.query("SELECT Business_Number, Chemist FROM chemist", (error, rows) => {
-        if (error){
-            return res.status(500).json({error});
+        if (error) {
+            return res.status(500).json({ error });
         }
 
         res.json(rows);
 
-    });  
+    });
 });
 
-app.get("/api/chemist/eugene", (req, res) =>{
+app.get("/api/chemist/eugene", (req, res) => {
     pool.query(
         `select c.chemist, c.location, d.drug, cc.phone_number, bt.working_hours from chemist c 
         JOIN drug d ON d.business_number = c.business_number
@@ -31,57 +31,58 @@ app.get("/api/chemist/eugene", (req, res) =>{
         JOIN business_time bt ON bt.business_number = c.business_number`,
         (error, rows) => {
             if (error) {
-                return res.status(500).json({error});
+                return res.status(500).json({ error });
             }
             res.json(rows);
-        }  
+        }
     );
 });
 
-app.get("/api/drug/", (req, res) =>{
+app.get("/api/drug/", (req, res) => {
     pool.query(
         `SELECT d.drug, d.description, d.price, c.chemist from drug d
         JOIN chemist c ON c.business_number = d.business_number`,
-        (error, rows) =>{
-            if (error){
-                return res.status(500).json({error});
+        (error, rows) => {
+            if (error) {
+                return res.status(500).json({ error });
             }
             res.json(rows);
         }
     );
 });
 
-app.post("/api/Chemist/tke", (req, res) =>{
-    const Chemist = req.body;
-    
+app.post("/api/Chemist", (req, res) => {
+    const { Chemist, Location, Business_Number } = req.body;
 
-    if(!Chemist.Chemist){
-        return res.status(400).json({error: "Invalid payload"})
+    if (!Chemist && !Location && !Business_Number) {
+        return res.status(400).json({ error: "Invalid payload" })
     }
-    pool.querry(
-        "INSERT INTO Chemist (Chemist) VALUES (?)",
-        [Chemist.Chemist],
-        (error, results) =>{
-            if (error){
-                return res.status(500).jason({error});
+
+    pool.query(
+        "INSERT INTO Chemist (Chemist, Location, Business_Number) VALUES (?, ?, ?)",
+        [Chemist, Location, Business_Number],
+        (error, results) => {
+            if (error) {
+                return res.status(500).json({ error });
             }
-        res.json(results.insertId);
+
+            res.json(results.affectedRows);
         }
     );
 });
 
-app.put("/api/chemist/id", (req, res) =>{
-    const chemist = req.body;
+app.put("/api/Chemist/id", (req, res) => {
+    const Chemist = req.body;
 
-    if (!Chemist.Chemist){
-        return res.status(400).json({error: "Invalid payload"});
+    if (!Chemist.Chemist) {
+        return res.status(400).json({ error: "Invalid payload" });
     }
     pool.query(
         "UPDATE chemist SET Chemist = ? WHERE id  = ?",
         [chemist.Chemist, re.params.id],
         (error, results) => {
-            if (error){
-                return res.status(500).json({error});
+            if (error) {
+                return res.status(500).json({ error });
             }
             res.json(results.changedRows);
         }
