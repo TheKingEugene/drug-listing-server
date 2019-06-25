@@ -72,13 +72,13 @@ app.post("/api/Chemist", (req, res) => {
 });
 
 app.put("/api/Chemist/id", (req, res) => {
-    const Chemist = req.body;
+    const {Chemist, Location, Business_Number} = req.body;
 
-    if (!Chemist.Chemist) {
+    if (!Chemist || !Location || ! Business_Number) {
         return res.status(400).json({ error: "Invalid payload" });
     }
     pool.query(
-        "UPDATE chemist SET Chemist = ? WHERE id  = ?",
+        "UPDATE Chemist SET (Chemist = ?, Location = ?, Business_Number = ?) WHERE id  = ?",
         [chemist.Chemist, re.params.id],
         (error, results) => {
             if (error) {
