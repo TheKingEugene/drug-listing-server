@@ -51,18 +51,37 @@ app.get("/api/drug/", (req, res) => {
     );
 });
 
+
 app.post("/api/Chemist", (req, res) => {
     const { Chemist, Location, Business_Number } = req.body;
 
     if (!Chemist && !Location && !Business_Number) {
         return res.status(400).json({ error: "Invalid payload" })
     }
-
     pool.query(
         "INSERT INTO Chemist (Chemist, Location, Business_Number) VALUES (?, ?, ?)",
         [Chemist, Location, Business_Number],
         (error, results) => {
             if (error) {
+                return res.status(500).json({ error });
+            }
+
+            res.json(results.affectedRows);
+        }
+    );
+});
+
+app.post("/api/Drug", (req, res) =>{
+    const {Drug, Price, Manufacturer, Description, Drug_Number, Business_Number} =  req.body;
+
+    if (!Drug && !Price && !Manufacturer && !Description && !Drug_Number && !Business_Number){
+        return res.status(400).json({error: "Invalid Payload"})
+    }
+    pool.query(
+        "INSERT INTO Drug (Drug, Price, Manufacturer, Description, Drug_Number, Business_Number) VALUES (? ,? ,? ,? ,? ,?)",
+        [Drug, Price, Manufacturer, Description, Drug_Number, Business_Number],
+        (error, results) => {
+            if (error){
                 return res.status(500).json({ error });
             }
 
