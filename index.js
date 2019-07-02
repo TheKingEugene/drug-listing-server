@@ -71,17 +71,17 @@ app.post("/api/Chemist", (req, res) => {
     );
 });
 
-app.post("/api/Drug", (req, res) =>{
-    const {Drug, Price, Manufacturer, Description, Drug_Number, Business_Number} =  req.body;
+app.post("/api/Drug", (req, res) => {
+    const { Drug, Price, Manufacturer, Description, Drug_Number, Business_Number } = req.body;
 
-    if (!Drug && !Price && !Manufacturer && !Description && !Drug_Number && !Business_Number){
-        return res.status(400).json({error: "Invalid Payload"})
+    if (!Drug && !Price && !Manufacturer && !Description && !Drug_Number && !Business_Number) {
+        return res.status(400).json({ error: "Invalid Payload" })
     }
     pool.query(
         "INSERT INTO Drug (Drug, Price, Manufacturer, Description, Drug_Number, Business_Number) VALUES (? ,? ,? ,? ,? ,?)",
         [Drug, Price, Manufacturer, Description, Drug_Number, Business_Number],
         (error, results) => {
-            if (error){
+            if (error) {
                 return res.status(500).json({ error });
             }
 
@@ -91,11 +91,11 @@ app.post("/api/Drug", (req, res) =>{
 });
 
 
-app.post("/api/Business_Time", (res, req) =>{
-    const{id, Business_Number, Drug_Number, Working_Hours} = req.body;
+app.post("/api/Business_Time", (req, res) => {
+    const { id, Business_Number, Drug_Number, Working_Hours } = req.body;
 
-    if(!id && !Business_Number && !Drug_Number && !Working_Hours){
-        return res.status(400).json({error: "Invalid Payload"})
+    if (!id && !Business_Number && !Drug_Number && !Working_Hours) {
+        return res.status(400).json({ error: "Invalid Payload" })
     }
     pool.query(
         "INSERT INTO Business_Time (id, Business_Number, Drug_Number, Working_Hours) VALUES (?, ?, ?,?)",
@@ -110,18 +110,18 @@ app.post("/api/Business_Time", (res, req) =>{
     );
 });
 
-app.post("/api/Chemist_Contacts", (res, req) =>{
-    const{Phone_Number, E_Mail, Business_Number} = req.body;
+app.post("/api/Chemist_Contacts", (req, res) => {
+    const { Phone_Number, E_Mail, Business_Number } = req.body;
 
-    if(!Phone_Number && !E_Mail && !Business_Number){
-        return res.status(400).json({error: "Invalid Payload"})
+    if (!Phone_Number && !E_Mail && !Business_Number) {
+        return res.status(400).json({ error: "Invalid Payload" })
     }
     pool.query(
         "INSERT INTO Chemist_Contacts (Phone_Number. E_Mail, Business_Number) VALUES (?, ?, ?)",
         [Phone_Number, E_Mail, Business_Number],
-        (error, results) =>{
-            if (error){
-                return res.status(500).json ({error});
+        (error, results) => {
+            if (error) {
+                return res.status(500).json({ error });
             }
             res.json(results.affectedRows);
         }
@@ -130,18 +130,18 @@ app.post("/api/Chemist_Contacts", (res, req) =>{
 
 
 app.put("/api/Chemist/id", (req, res) => {
-    const {Chemist, Location, Business_Number} = req.body;
+    const { Chemist, Location, Business_Number } = req.body;
 
-    if (!Chemist || !Location || ! Business_Number) {
+    if (!Chemist || !Location || !Business_Number) {
         return res.status(400).json({ error: "Invalid payload" });
     }
     pool.query(
         "UPDATE Chemist SET (Chemist = ?, Location = ?, Business_Number = ?) WHERE id  = ?",
-        [chemist.Chemist, re.params.id],
+        [chemist.Chemist, res.params.id],
         (error, results) => {
             if (error) {
                 return res.status(500).json({ error });
-                
+
             }
             res.json(results.changedRows);
         }
@@ -154,4 +154,3 @@ app.put("/api/Chemist/id", (req, res) => {
 
 
 app.listen(9000, () => console.log("App listening to port 9000"));
-
