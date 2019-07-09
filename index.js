@@ -114,27 +114,49 @@ app.post("/api/Chemist_Contacts", (req, res) => {
             res.json(results.affectedRows);
         }
     );
-}); 
+});
 
-app.put("/api/Chemist/id", (req, res) => {
+app.put("/api/Chemist/:Business_Number", (req, res) => {
     const { Chemist, Location, Business_Number } = req.body;
 
     if (!Chemist || !Location || !Business_Number) {
         return res.status(400).json({ error: "Invalid payload" });
-    }
+
+    }  
+
     pool.query(
-        "UPDATE Chemist SET (Chemist = ?, Location = ?, Business_Number = ?) WHERE id  = ?",
-        [chemist.Chemist, res.params.id],
+        "UPDATE Chemist SET (Chemist = ?, Location = ?, Business_Number = ?) WHERE Business_Number  = ?",
+            [chemist.Chemist, res.params.Business_Number],
+            (error, results) => {
+                if (error) {
+                    return res.status(500).json({ error });
+                }
+               
+                res.json(results.changedRows);
+            }
+    );
+    
+});
+
+app.put("/api/Drug:Drug_Number", (req, res) => {
+    const { Drug, Price, Manufacturer, Description, Drug_Number, Business_Number } = req.body;
+    if (!Drug && !Price && !Manufacturer && !Description && !Drug_Number && !Business_Number) {
+        return res.status(400).json({ error: "Invalid Payload" });
+    }
+
+    pool.query(
+        "UPDATE Drug SET (Drug = ? Price = ?, Manufacturer = ?, Description = ?, Drug_Number = ?, Business_Number = ?) WHERE Drug_Number = ?",
+        [Drug.Drug, res.params.Drug_Number],
         (error, results) => {
             if (error) {
-                return res.status(500).json({ error });
-
+                return req.status(500).json({ error });
             }
-            res.json(results.changedRows);
+             res.json(results.changedRows);
         }
+    
     );
 });
 
-app.listen(9000, () => console.log("App listening to port 9000"))
+app.listen(9000, () => console.log("App listening to port 9000"));
 
 
