@@ -119,14 +119,14 @@ app.post("/api/Chemist_Contacts", (req, res) => {
 
 
 app.put("/api/Chemist/:Business_Number", (req, res) => {
-    const { Chemist, Location, Business_Number } = req.body;
+    const { Chemist, Location} = req.body;
 
-    if (!Chemist || !Location || !Business_Number) {
+    if (!Chemist || !Location){
         return res.status(400).json({ error: "Invalid payload" });
     }
     pool.query(
-        "UPDATE Chemist SET (Chemist = ?, Location = ?, Business_Number = ?) WHERE Business_Number  = ?",
-        [Chemist, Location, Business_Number, req.params.Business_Number],
+        "UPDATE Chemist SET Chemist = ?, Location = ? WHERE Business_Number  = ?",
+        [Chemist, Location, req.params.Business_Number],
         (error, results) => {
             if (error) {
                 return res.status(500).json({ error });
@@ -138,16 +138,17 @@ app.put("/api/Chemist/:Business_Number", (req, res) => {
 });
 
 app.put("/api/Drug/:Drug_Number", (req, res) => {
-    const { Drug, Price, Manufacturer, Description, Drug_Number} = req.body;
-    if (!Drug || !Price || !Manufacturer || !Description || !Drug_Number) {
+    const { Drug, Price, Manufacturer, Description} = req.body;
+    
+    if (!Drug || !Price || !Manufacturer || !Description) {
         return res.status(400).json({ error: "Invalid Payload" });
     }
     pool.query(
-        "UPDATE Drug SET (Drug = ? Price = ?, Manufacturer = ?, Description = ?, Drug_Number = ?) WHERE Drug_Number = ?",
-        [Drug, Price, Manufacturer, Description, Drug_Number, res.params.Drug_Number],
+        "UPDATE Drug SET Drug = ? Price = ?, Manufacturer = ?, Description = ? WHERE Drug_Number = ?",
+        [Drug, Price, Manufacturer, Description, res.params.Drug_Number],
         (error, results) => {
             if (error) {
-                return req.status(500).json({ error });
+                return res.status(500).json({ error });
             }
             res.json(results.changedRows);
         }
@@ -161,7 +162,7 @@ app.put("/api/Chemist_Contacts/:Phone_Number", (req, res) => {
         return res.status(400).json({ error: "Invalid Payload" });
     }
     pool.query(
-        "UPDATE Chemist_Conatcts SET (Phone_Number = ? E_Mail = ?, Business_Number = ?) WHERE Phone_Number = ?",
+        "UPDATE Chemist_Conatcts SET Phone_Number = ? E_Mail = ?, Business_Number = ? WHERE Phone_Number = ?",
         [Phone_Number, E_Mail, Business_Number, res.params.Drug_Number],
         (error, results) => {
             if (error) {
@@ -179,7 +180,7 @@ app.put("/api/Business_Time/:Business_Number", (req, res) => {
         return res.status(400).json({ error: "Invalid Payload" });
     }
     pool.query(
-        "UPDATE Business_Time SET (id = ? Business_Number = ? Drug_Number = ? Working_Hours = ?) WHERE Business_Number = ?",
+        "UPDATE Business_Time SET id = ? Business_Number = ? Drug_Number = ? Working_Hours = ? WHERE Business_Number = ?",
         [id, Business_Number, Drug_Number, Working_Hours],
         (error, results) => {
             if (error) {
@@ -192,7 +193,7 @@ app.put("/api/Business_Time/:Business_Number", (req, res) => {
 });
 
 
-app.delete("api/Cheimst/:Business_ Number", (req, res) =>{
+app.delete("api/Chemist/:Business_ Number", (req, res) =>{
     pool.query(
         "DELETE from Chemist WHERE Business_Number = ?",
         [req.parmas.Business_Number],
@@ -221,7 +222,7 @@ app.delete("api/Drug/:Drug_ Number", (req, res) =>{
     
 });
 
-app.delete("api/Cheimst_Contacts/:Phone_ Number", (req, res) =>{
+app.delete("api/Chemist_Contacts/:Phone_ Number", (req, res) =>{
     pool.query(
         "DELETE from Chemist WHERE Phone_Number = ?",
         [req.parmas.Phone_Number],
