@@ -144,8 +144,8 @@ app.put("/api/Drug/:Drug_Number", (req, res) => {
         return res.status(400).json({ error: "Invalid Payload" });
     }
     pool.query(
-        "UPDATE Drug SET Drug = ? Price = ?, Manufacturer = ?, Description = ? WHERE Drug_Number = ?",
-        [Drug, Price, Manufacturer, Description, res.params.Drug_Number],
+        "UPDATE Drug SET Drug = ?, Price = ?, Manufacturer = ?, Description = ? WHERE Drug_Number = ?",
+        [Drug, Price, Manufacturer, Description, req.params.Drug_Number],
         (error, results) => {
             if (error) {
                 return res.status(500).json({ error });
