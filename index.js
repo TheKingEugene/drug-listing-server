@@ -175,16 +175,16 @@ app.put("/api/Chemist_Contacts/:Business_Number", (req, res) => {
 });
 
 app.put("/api/Business_Time/:Business_Number", (req, res) => {
-    const { id, Business_Number, Drug_Number, Working_Hours } = req.body;
-    if (!id || !Business_Number || !Drug_Number || !Working_Hours) {
+    const {Working_Hours} = req.body;
+    if (!Working_Hours) {
         return res.status(400).json({ error: "Invalid Payload" });
     }
     pool.query(
-        "UPDATE Business_Time SET id = ? Business_Number = ? Drug_Number = ? Working_Hours = ? WHERE Business_Number = ?",
-        [id, Business_Number, Drug_Number, Working_Hours],
+        "UPDATE Business_Time SET Working_Hours = ? WHERE Business_Number = ?",
+        [Working_Hours, req.params.Business_Number],
         (error, results) => {
             if (error) {
-                return req.status(500).json({ error });
+                return res.status(500).json({ error });
             }
             res.json(results.changedRows);
         }
