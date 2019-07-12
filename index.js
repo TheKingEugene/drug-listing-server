@@ -156,17 +156,17 @@ app.put("/api/Drug/:Drug_Number", (req, res) => {
     );
 });
 
-app.put("/api/Chemist_Contacts/:Phone_Number", (req, res) => {
-    const { Phone_Number, E_Mail, Business_Number } = req.body;
-    if (!Phone_Number || !E_Mail || !Business_Number) {
+app.put("/api/Chemist_Contacts/:Business_Number", (req, res) => {
+    const { Phone_Number, E_Mail } = req.body;
+    if ( !Phone_Number || !E_Mail) {
         return res.status(400).json({ error: "Invalid Payload" });
     }
     pool.query(
-        "UPDATE Chemist_Conatcts SET Phone_Number = ? E_Mail = ?, Business_Number = ? WHERE Phone_Number = ?",
-        [Phone_Number, E_Mail, Business_Number, res.params.Drug_Number],
+        "UPDATE Chemist_Contacts SET Phone_Number = ?, E_Mail = ? WHERE Business_Number = ?",
+        [Phone_Number, E_Mail, req.params.Business_Number],
         (error, results) => {
             if (error) {
-                return req.status(500).json({ error });
+                return res.status(500).json({ error });
             }
             res.json(results.changedRows);
         }
