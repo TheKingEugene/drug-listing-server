@@ -18,7 +18,8 @@ app.get("/api/chemist/", (req, res) => {
         `select c.chemist, c.location, d.drug, cc.phone_number, bt.working_hours from chemist c 
         JOIN drug d ON d.business_number = c.business_number
         JOIN chemist_contacts cc ON cc.business_number = c.business_number
-        JOIN business_time bt ON bt.business_number = c.business_number`,
+        JOIN business_time bt ON bt.business_number = c.business_number
+        ORDER BY c.Business_Number ASC`,
         (error, rows) => {
             if (error) {
                 return res.status(500).json({ error });
@@ -31,7 +32,8 @@ app.get("/api/chemist/", (req, res) => {
 app.get("/api/drug/", (req, res) => {
     pool.query(
         `SELECT d.drug, d.description, d.price, c.chemist from drug d
-        JOIN chemist c ON c.business_number = d.business_number`,
+        JOIN chemist c ON c.business_number = d.business_number
+        ORDER BY d.business_number ASC`,
         (error, rows) => {
             if (error) {
                 return res.status(500).json({ error });
