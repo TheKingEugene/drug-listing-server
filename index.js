@@ -64,13 +64,13 @@ app.post("/api/Chemist", (req, res) => {
 });
 
 app.post("/api/Drug", (req, res) => {
-    const { Drug, Price, Manufacturer, Description, Drug_Number, Business_Number } = req.body;
+    const { Drug, Price, Manufacturer, Description, Drug_Number, Business_Number} = req.body;
 
     if (!Drug && !Price && !Manufacturer && !Description && !Drug_Number && !Business_Number) {
         return res.status(400).json({ error: "Invalid Payload" })
     }
     pool.query(
-        "INSERT INTO Drug (Drug, Price, Manufacturer, Description, Drug_Number, Business_Number) VALUES (? ,? ,? ,? ,? ,?)",
+        "INSERT INTO Drug (Drug, Price, Manufacturer, Description, Drug_Number, Business_Number) VALUES (? ,? ,? ,? ,?, ?)",
         [Drug, Price, Manufacturer, Description, Drug_Number, Business_Number],
         (error, results) => {
             if (error) {
@@ -108,7 +108,7 @@ app.post("/api/Chemist_Contacts", (req, res) => {
         return res.status(400).json({ error: "Invalid Payload" })
     }
     pool.query(
-        "INSERT INTO Chemist_Contacts (Phone_Number. E_Mail, Business_Number) VALUES (?, ?, ?)",
+        "INSERT INTO Chemist_Contacts (Phone_Number, E_Mail, Business_Number) VALUES (?, ?, ?)",
         [Phone_Number, E_Mail, Business_Number],
         (error, results) => {
             if (error) {
@@ -195,10 +195,10 @@ app.put("/api/Business_Time/:Business_Number", (req, res) => {
 });
 
 
-app.delete("api/Chemist/:Business_ Number", (req, res) =>{
+app.delete("/api/Chemist/:Business_Number", (req, res) => {
     pool.query(
-        "DELETE from Chemist WHERE Business_Number = ?",
-        [req.parmas.Business_Number],
+        "DELETE  from Chemist WHERE Business_Number = ?",
+        [req.params.Business_Number],
         (error, results) => {
             if (error) {
                 return res.status(500).json({ error });
@@ -208,12 +208,13 @@ app.delete("api/Chemist/:Business_ Number", (req, res) =>{
 
 
     );
+    
 });
 
-app.delete("api/Drug/:Drug_ Number", (req, res) =>{
+app.delete("/api/Drug/:Drug_Number", (req, res) =>{
     pool.query(
-        "DELETE from Chemist WHERE Drug_Number = ?",
-        [req.parmas.Drug_Number],
+        "DELETE FROM Drug WHERE Drug_Number = ?",
+        [req.params.Drug_Number],
         (error, results) => {
             if (error) {
                     return res.status(500).json({ error });
@@ -224,10 +225,10 @@ app.delete("api/Drug/:Drug_ Number", (req, res) =>{
     
 });
 
-app.delete("api/Chemist_Contacts/:Phone_ Number", (req, res) =>{
+app.delete("/api/Chemist_Contacts/:Phone_ Number", (req, res) =>{
     pool.query(
-        "DELETE from Chemist WHERE Phone_Number = ?",
-        [req.parmas.Phone_Number],
+        "DELETE from Chemist_Contacts WHERE Phone_Number = ?",
+        [req.params.Phone_Number],
         (error, results) => {
             if (error) {
                 return res.status(500).json({ error });
@@ -239,10 +240,10 @@ app.delete("api/Chemist_Contacts/:Phone_ Number", (req, res) =>{
     );
 });
 
-app.delete("api/Business_Time/:Business_ Number", (req, res) =>{
+app.delete("/api/Business_Time/:Business_ Number", (req, res) =>{
     pool.query(
         "DELETE from Chemist WHERE Business_Number = ?",
-        [req.parmas.Business_Number],
+        [req.params.Business_Number],
         (error, results) => {
             if (error) {
                 return res.status(500).json({ error });
