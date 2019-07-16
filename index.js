@@ -225,7 +225,7 @@ app.delete("/api/Drug/:Drug_Number", (req, res) =>{
     
 });
 
-app.delete("/api/Chemist_Contacts/:Phone_ Number", (req, res) =>{
+app.delete("/api/Chemist_Contacts/:Phone_Number", (req, res) =>{
     pool.query(
         "DELETE from Chemist_Contacts WHERE Phone_Number = ?",
         [req.params.Phone_Number],
@@ -240,9 +240,9 @@ app.delete("/api/Chemist_Contacts/:Phone_ Number", (req, res) =>{
     );
 });
 
-app.delete("/api/Business_Time/:Business_ Number", (req, res) =>{
+app.delete("/api/Business_Time/:Business_Number", (req, res) =>{
     pool.query(
-        "DELETE from Chemist WHERE Business_Number = ?",
+        "DELETE from Business_Time WHERE Business_Number = ?",
         [req.params.Business_Number],
         (error, results) => {
             if (error) {
