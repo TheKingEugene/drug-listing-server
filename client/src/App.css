@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -30,4 +30,71 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+Main{
+  background-color:grey;
 }
+
+.Tabs {
+  background-color: #61dafb;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Tabs a {
+  font-weight: bold;
+  margin-left: 20px;
+  font-size: 32px;
+  text-decoration: none;
+  
+}
+
+.searchbox #input{
+
+  left: 550px;
+  margin: 0; 
+  position: relative;
+  width: 20%;
+  color: initial;
+  background-color: 000;
+  font: 400 13.3333px Arial;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid #fdfdfc
+} 
+
+.searchbox #searchicon {
+  left:826px;
+  margin: 0;
+  position: absolute;
+  top: 45px;
+  height: 20px;
+  
+}
+
+.thedrug {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 120px; 
+  text-align: center;
+}
+
+h1, p{
+  margin-left: 20px;
+}
+
+h1{
+  color: burlywood;
+}
+
+p{
+  color: white;
+}
+
+
+
