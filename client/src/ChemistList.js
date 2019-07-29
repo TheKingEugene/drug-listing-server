@@ -8,7 +8,6 @@ function ChemistList ({chemdetails}) {
                 <Chemist chemdetails = {king}/>
 
             ))}
-
         </div>
 
     )

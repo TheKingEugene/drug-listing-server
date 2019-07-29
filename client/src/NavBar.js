@@ -1,12 +1,13 @@
 import React from "react";
+import {Link} from "@reach/router";
 
 function NavBar() {
     return (
         <div className = "Tabs">
-            <a href = "home.js">Home</a>
-            <a href = "Drug.js">Drug</a>
-            <a href = "Chemist.js">Chemist</a>
-            <a href = "Admin.js">Admin</a>
+            <Link to = "/home">Home</Link>
+            <Link to = "/Drug">Drug</Link>
+            <Link to = "/Chemist">Chemist</Link>
+            <Link to = "/Admin">Admin</Link>
         </div>
     )
 }
