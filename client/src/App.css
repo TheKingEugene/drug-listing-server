@@ -1,5 +1,5 @@
 
-Main{
+.topnav{
   background-color:grey;
 }
 
@@ -44,7 +44,7 @@ Main{
   
 }
 
-.thedrug {
+.thedrug, .thechemist {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -62,6 +62,10 @@ h1{
 
 p{
   color: white;
+}
+
+.homediv #projlogo{
+  background-color: pink;
 }
 
 

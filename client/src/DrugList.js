@@ -21,7 +21,8 @@ class DrugList extends React.Component {
     fetchdruglist(){
         this.setState({
             loading: true, 
-            error: false})
+            error: false
+        })
         axios.get("/api/drug/")
         .then(response =>(
             this.setState({
@@ -34,7 +35,7 @@ class DrugList extends React.Component {
 
         .catch(error =>{
             this.setState({
-                thedrug:[], 
+                thedrug: [], 
                 loading: false,
                 error: true
             })

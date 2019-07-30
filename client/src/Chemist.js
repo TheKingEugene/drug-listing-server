@@ -1,11 +1,11 @@
 import React from "react";
 
-function Chemist ({chemdetails}){
-    const {Chemist, Location} = chemdetails;
+function Chemist ({thechemist}){
+    const {chemist, location} = thechemist;
     return(
         <div>
-            <h1>{Chemist}</h1>
-            <p>{Location}</p>
+            <h1>{chemist}</h1>
+            <p>{location}</p>
         </div>
     )
 }
