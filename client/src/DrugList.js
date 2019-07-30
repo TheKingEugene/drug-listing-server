@@ -3,7 +3,7 @@ import Drug from "./Drug";
 import axios from "axios";
 
 
- class DrugList extends React.Component {
+class DrugList extends React.Component {
 
     constructor(props){
         super(props);
@@ -19,7 +19,9 @@ import axios from "axios";
     }
 
     fetchdruglist(){
-        this.setState({loading: true, error: false})
+        this.setState({
+            loading: true, 
+            error: false})
         axios.get("/api/drug/")
         .then(response =>(
             this.setState({
@@ -41,14 +43,14 @@ import axios from "axios";
     }
     render(){
         const{thedrug} = this.state;
-    return (
+        return (
         <div className = "thedrug">
             {thedrug.map(king =>(
                 <Drug thedrug = {king}/>
             ))}
         </div>
-    )
+    )}
 }
-}
+
 
 export default DrugList;
