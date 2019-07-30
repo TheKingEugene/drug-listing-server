@@ -10,6 +10,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  height:44px;
 }
 
 .Tabs a {
@@ -53,21 +54,28 @@
   text-align: center;
 }
 
-h1, p{
-  margin-left: 20px;
-}
-
 h1{
   color: burlywood;
 }
 
-p{
+h2, h3, p{
   color: white;
+  text-align: center;
+
 }
 
 .homediv #projlogo{
-  background-color: pink;
+ background-color:grey;
+ margin-left: 630px;
+  
 }
 
+.thedrug h1{
+  margin: 0 10px;
+}
+
+.thechemist p{
+padding: 0 10px;
+}
 
 

@@ -1,15 +1,17 @@
 import React from "react";
+import projlogo from "./projlogo.jpeg"
 
 function Home () {
     return (
         <div className = "homediv">
-            <p> 
-            Welcome to drug Lists. You can Search for a drug by its name of the name of a Chemist.
-            Click on a tab to navigate appropriately. 
-            </p>
-            <img src="./projlogo.jpeg" alt="projlogo" id ="projlogo" width="200" height="200" boader="0"/>
+            <img src= {projlogo} alt="projlogo" id ="projlogo" width = "100" height = "100" border = "0"/>
+            <h2>WELCOME TO DRUG LISTINGS!</h2>
+            <h3> 
+                You can search for a drug by its name or by the name of a Chemist.
+                Click on a tab to navigate appropriately. 
+            </h3>
         </div>
-    )
+    );
 }
 
 

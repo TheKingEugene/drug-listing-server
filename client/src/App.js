@@ -16,7 +16,7 @@ function App() {
 
       <main className = "body">
         <Router>
-          <Home path = "/Home" />
+          <Home path = "/home" />
           <DrugList path = "/Drug" /> 
           <ChemistList path = "/Chemist" />
         </Router>
