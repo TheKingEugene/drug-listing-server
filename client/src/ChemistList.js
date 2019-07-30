@@ -2,6 +2,7 @@ import React from "react";
 import Chemist from "./Chemist";
 import axios from "axios";
 import search from "./searchicon.png";
+import NoMatches from "./NoMatches";
 
 class ChemistList extends React.Component {
     constructor(props) {
@@ -56,18 +57,25 @@ class ChemistList extends React.Component {
         });
     }
 
-    render() {
+    renderChemists() {
         const { thechemist, searchString, filteredChemists } = this.state;
         const chemists = searchString === "" ? thechemist : filteredChemists;
 
+        if (searchString !== "" && filteredChemists.length === 0){
+            return <NoMatches/>
+        }
+
+        return chemists.map(queen =>(
+            <Chemist key={queen.Business_Number} thechemist = {queen} />
+        ))
+    }
+
+    render() {
         return (
             <div className = "searchbox">
                 <input id="input" type="text" placeholder="Search..." autoComplete="off" onChange={this.searchChemists} />
                 <div className="thechemist">
-                    {chemists.map(queen => (
-                        <Chemist key={queen.business_number} thechemist={queen} />
-
-                    ))}
+                    {this.renderChemists()}
                 </div>
             </div>
         )

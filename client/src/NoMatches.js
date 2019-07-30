@@ -2,7 +2,7 @@ import React from "react";
 
 function NoMatches () {
     return(
-        <div>
+        <div className = "nomatches">
             <p>No matches...</p>
         </div>
     );
