@@ -1,5 +1,6 @@
 .body, .homediv{
   background-color:grey;
+  min-height: calc(100vh - 44px);
 }
 
 .Tabs {
@@ -16,6 +17,7 @@
   margin-left: 20px;
   font-size: 32px;
   text-decoration: none;
+  height:44px;
   
 }
 

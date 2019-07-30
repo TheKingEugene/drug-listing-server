@@ -2,6 +2,7 @@ import React from "react";
 import Drug from "./Drug";
 import axios from "axios";
 import search from "./searchicon.png";
+import NoMatches from "./NoMatches";
 
 
 class DrugList extends React.Component {
@@ -58,18 +59,25 @@ class DrugList extends React.Component {
         });
     }
 
-    render(){
+    renderDrugs() {
         const {thedrug, searchString, filteredDrugs} = this.state;
         const drugs = searchString === "" ? thedrug : filteredDrugs;
 
+        if (searchString !== "" && filteredDrugs.length === 0){
+            return <NoMatches/>
+        }
+
+        return drugs.map(king =>(
+            <Drug key = {king.Drug_Number} thedrug = {king} />
+        ))
+    }
+
+    render() {
         return (
             <div className = "searchbox">
                 <input id="input" type="text" placeholder="Search..." autoComplete="off" onChange={this.searchDrugs} />
                 <div className = "thedrug">
-                    {drugs.map(king =>(
-                        <Drug key = {king.Drug_Number} thedrug = {king} />
-
-                    ))}
+                    {this.renderDrugs()}
                 </div>
             </div>    
         
