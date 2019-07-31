@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import DrugList from "./DrugList";
 import ChemistList from "./ChemistList";
-// import Admin from "./Admin"
+import Admin from "./Admin"
 import "./App.css";
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
           <Home path = "/home" />
           <DrugList path = "/Drug" /> 
           <ChemistList path = "/Chemist" />
+          <Admin path = "/Admin"/>
         </Router>
       </main>
     </div>

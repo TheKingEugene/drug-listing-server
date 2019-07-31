@@ -77,3 +77,14 @@ h2, h3, p{
 .thechemist p{
 padding: 0 10px;
 }
+
+.Admin Button {
+  margin-left: 620px;
+  text-align: center;
+  color: blue;
+  border-color: lightseagreen;
+  background-color: lightseagreen;
+  font-weight: bold;
+  width: 200px;
+  height: 30px
+}
