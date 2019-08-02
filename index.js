@@ -254,6 +254,6 @@ app.delete("/api/Business_Time/:Business_Number", (req, res) =>{
 });
 
 
-app.listen(9000, () => console.log("App listening to port 9000"));
+app.listen(9000, () => console.log("Long Live The King Eugene"));
 
 

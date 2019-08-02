@@ -1,14 +1,23 @@
 import React from "react";
+import ChemistAdmin from "./ChemistAdmin"
+import axios from "axios";
+import {Link} from "@reach/router"
 
 function Admin(){
     return (
         <div className = "Admin">
-            <h2>This page can only be used by the administrators for management purposes</h2>
-            <h2>Click on a button to navigate appropriately</h2>
-            <button id = "modchem">MODIFY CHEMIST</button>
+            <h1>This is the Administrator's Page!</h1>
+            <h2>Click on a button to navigate appropriately...</h2>
+            <Link to="/ChemistAdmin"> 
+            <button id = "modchem" >MODIFY CHEMIST</button>
+            </Link>
                         <br/>
                         <br/>
-            <button id = "moddrug">MODIFY DRUG</button>
+            <Link to= "/DrugAdmin">
+            <button id = "moddrug" href = "DrugAdmin">MODIFY DRUG</button>
+            </Link>
+            
+            
         </div>
     );
 }
