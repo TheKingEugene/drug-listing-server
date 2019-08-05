@@ -2,7 +2,7 @@ import React from "react";
 import { defaultCoreCipherList } from "constants";
 
 function ChemistTable({
-    ChemistStore, tableLoading, tableError
+    ChemistStore, tableLoading, tableError, editChemist
 }){
     return(
         <div>
@@ -17,12 +17,14 @@ function ChemistTable({
                             
                         <th>Phone Number</th>
 
+                        <th>E-Mail</th>
+
                         <th>Working Hours</th>
                     </tr>
                 </thead>
                 <tbody>
                     {ChemistStore.map((chemeq, index)=>{
-                        const{business_number, chemist, location, phone_number, working_hours}= chemeq
+                        const{business_number, chemist, location, phone_number, email, working_hours}= chemeq
                         return(
                             
                             <tr key ={business_number}>
@@ -30,11 +32,12 @@ function ChemistTable({
                                 <td>{chemist}</td>
                                 <td>{location}</td>
                                 <td>{phone_number}</td>
+                                <td>{email}</td>
                                 <td>{working_hours}</td>
 
 
                                 <td className="span">
-                                    <span id = "edit">Edit</span>
+                                    <span id = "edit" onClick = {editChemist(chemeq)}>Edit</span>
                                     
                                     <span id = "delete">Delete</span>
                                 </td>

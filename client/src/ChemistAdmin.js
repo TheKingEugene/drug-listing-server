@@ -7,67 +7,101 @@ class ChemistAdmin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Business_Number:"",
-            chemist: "",
-            Location:"",
-            Phone_Number:"",
-            E_Mail:"",
-            Working_Hours:"",
+            bsn: "",
+            chem: "",
+            loc: "",
+            phone: "",
+            email:"",
+            workhr: "",
             editing: false,
             tableLoading: false,
             tableError: false,
             ChemistStore: []
         }
         this.resetFormState = this.resetFormState.bind(this)
-    } 
+        this.handleOnChange = this.handleOnChange.bind(this)
+        this.editChemist = this.editChemist.bind(this)
+    }
 
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchchemChemist();
     }
 
-    fetchchemChemist(){
+    fetchchemChemist() {
         this.setState({
             tableLoading: true,
             tableError: false
         });
 
         axios.get("/api/Chemist/")
-        .then(response=>{
-            this.setState({
-                ChemistStore: response.data,
-                tableLoading: false,
-                tableError: false
-            });
-        })
-        .catch(error=>{
-            this.setState({
-                tableLoading: false,
-                tableError: true,
-                ChemistStore:[]
-            });
-        })
+            .then(response => {
+                this.setState({
+                    ChemistStore: response.data,
+                    tableLoading: false,
+                    tableError: false
+                });
+            })
+            .catch(error => {
+                this.setState({
+                    tableLoading: false,
+                    tableError: true,
+                    ChemistStore: []
+                });
+            })
     }
 
-    resetFormState(){
+    resetFormState() {
         this.setState = {
-            chem:"",
-            loc:"",
-            bsnN:"",
-            disc:"",
-            phone:"",
-            email:"",
-            workhr:"",
+            chem: "",
+            loc: "",
+            bsnN: "",
+            phone: "",
+            email: "",
+            workhr: "",
             tableLoading: false,
-            tableError:false
+            tableError: false
         }
 
     }
+    //handleonchange
+    handleOnChange(e) {
+        e.preventDefault();
+        let  name=e.target.name;
+        this.setState({
+            [name]:e.target.value
+         
 
-    render(){
-        const{
+         
+
+        })
+    }
+
+    editChemist(chemeq){
+        const {
+            business_number,
+            chemist,
+            location,
+            phone_number,
+            email,
+            working_hours
+        } = chemeq;
+        return ()=>{
+        this.setState({
+            bsn: business_number,
+            chem: chemist,
+            loc: location,
+            phone: phone_number,
+            workhr: working_hours
+
+        })}
+        
+    }
+
+    render() {
+        const {
             ChemistStore,
-            tableLoading ,
+            tableLoading,
             tableError,
             chem,
             loc,
@@ -77,32 +111,34 @@ class ChemistAdmin extends React.Component {
             email,
             workhr
 
-        } =  this.state;
-        return(
-            <div className = "table2">
+        } = this.state;
+        return (
+            <div className="table2">
                 <ChemistForm
-                chem = {chem}
-                loc = {loc}
-                bsnN = {bsnN}
-                disc = {disc}
-                phone = {phone}
-                email = {email}
-                workhr = {workhr}
-                resetFormState = {this.resetFormState}
+                    chem={chem}
+                    loc={loc}
+                    bsnN={bsnN}
+                    disc={disc}
+                    phone={phone}
+                    email={email}
+                    workhr={workhr}
+                    resetFormState={this.resetFormState}
+                    handleOnChange={this.handleOnChange}
                 />
 
 
                 <ChemistTable
-                    ChemistStore = {ChemistStore}
-                    tableLoading = {tableLoading}
-                    tableError = {tableError}
+                    ChemistStore={ChemistStore}
+                    tableLoading={tableLoading}
+                    tableError={tableError}
+                    editChemist = {this.editChemist}
                 />
             </div>
         );
     }
 
 
-           
-           
+
+
 }
 export default ChemistAdmin;

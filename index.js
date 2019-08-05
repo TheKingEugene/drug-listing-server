@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/api/chemist/", (req, res) => {
     pool.query(
-        `select c.business_number, c.chemist, c.location, d.drug, cc.phone_number, bt.working_hours from chemist c 
+        `select c.business_number, c.chemist, c.location, d.drug, cc.phone_number, cc.e_mail, bt.working_hours from chemist c 
         JOIN drug d ON d.business_number = c.business_number
         JOIN chemist_contacts cc ON cc.business_number = c.business_number
         JOIN business_time bt ON bt.business_number = c.business_number

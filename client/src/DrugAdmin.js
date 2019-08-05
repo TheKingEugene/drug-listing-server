@@ -8,11 +8,11 @@ class DrugAdmin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Drug: "",
-            Price: "",
-            Manufacturer: "",
-            Description: "",
-            Drug_Number: "",
+            drg: "",
+            price: "",
+            manf: "",
+            disc: "",
+            drgN: "",
             editting: false,
             tableLoading: false,
             tableError: false,
