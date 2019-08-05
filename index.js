@@ -31,7 +31,7 @@ app.get("/api/chemist/", (req, res) => {
 
 app.get("/api/drug/", (req, res) => {
     pool.query(
-        `SELECT d.drug, d.description, d.price, c.chemist from drug d
+        `SELECT d.drug, d.description, d.manufacturer, d.drug_number, d.price, c.chemist from drug d
         JOIN chemist c ON c.business_number = d.business_number
         ORDER BY d.business_number ASC`,
         (error, rows) => {

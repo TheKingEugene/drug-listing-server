@@ -70,7 +70,7 @@ h2, h3, p{
   
 }
 
-.addchemist h1{
+.addchemist h1, .adddrug h1{
   margin-top: 0px;
   text-align: left;
 }
@@ -82,6 +82,13 @@ h2, h3, p{
   width: 30%;
 }
 
+.adddrug #button1{
+  font-weight: bolder;
+  background-color: green;
+  border-color: green;
+  width: 6%;
+}
+
 .addchemist #button2{
   font-weight: bolder;
   background-color: red;
@@ -89,7 +96,14 @@ h2, h3, p{
   width: 30%;  
 }
 
-.addchemist #h2{
+.adddrug #button2{
+  font-weight: bolder;
+  background-color: red;
+  border-color: red;
+  width: 6%;
+}
+
+.addchemist #h2, .adddrug #h2{
   text-align: left;
 }
 
@@ -101,10 +115,29 @@ h2, h3, p{
   display: block;
 }
 
+.adddrug label, input{
+  font-weight: bold;
+  color: burlywood;
+  margin: 0px;
+  font-weight: bold;
+  display: block;
+}
+
+.adddrug{
+  margin-left: 2%
+}
+
 .table{
   padding: 0;
   margin-top: 0cm;
   border-collapse: collapse;
+}
+
+.drgtable{
+  padding: 0;
+  margin-top: 0;
+  border-collapse: collapse;
+  margin-left: 720px;
 }
 
 .table2{
@@ -118,11 +151,21 @@ h2, h3, p{
   margin-top: 0cm;
 }
 
+.drgtable th{
+  color: burlywood;
+  margin-top: 0cm;
+}
+
 tr:hover{
   background-color: white;
 }
 
 .table td {
+  border: 3px dotted;
+  border-color: darkorange;
+}
+
+.drgtable td {
   border: 3px dotted;
   border-color: darkorange;
 }

@@ -1,27 +1,41 @@
 import React from "react";
 
-function ChemistForm(){
+function ChemistForm({chem, loc, bsnN, disc, phone, email, workhr, resetFormState}){
     return(
         <div className ="addchemist" >
             <h1>ADD A CHEMIST</h1>
             <h2 id = "h2">Enter Chemist Details</h2>
-        <label> Chemist Name</label><input type = "text"/>
+        <label name = "chem"> Chemist Name</label><input type = "text"
+        name = "chem" value = {chem}
+        />
                             <br/>
-        <label> Location</label><input type = "text"/>
+        <label name = "loc"> Location</label><input type = "text"
+        name = "loc"  value = {loc}
+        />
                             <br/>
-        <label> Business Number</label><input type = "text"/>
+        <label name = "bsnN"> Business Number</label><input type = "text"
+        name ="bsnN" value = {bsnN}
+        />
                             <br/>
-        <label> Discription</label><input type = "text"/>
+        <label name = "disc"> Discription</label><input type = "text"
+        name = "disc" value = {disc}
+        />
                             <br/>
-        <label> Phone Number</label><input type = "text"/>
+        <label name = "phone"> Phone Number</label><input type = "text"
+        name = "phone" value = {phone}
+        />
                             <br/>
-        <label> E-Mail</label><input type = "text"/>
+        <label name = "email"> E-Mail</label><input type = "text"
+        name = "email" value = {email}
+        />
                             <br/>
-        <label> Working Hours</label><input type = "text"/>
+        <label name = "workhr"> Working Hours</label><input type = "text"
+        name = "workh" value = {workhr}
+        />
                 <br/>
-        <button id = "button1">SAVE</button>
+        <button type="submit" id = "button1">SAVE</button>
          &nbsp;&nbsp;
-        <button id = "button2">DISCARD</button>
+        <button type = "reset" id = "button2" onClick = {resetFormState}>DISCARD</button>
         </div>
         
     );

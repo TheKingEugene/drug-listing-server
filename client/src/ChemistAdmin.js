@@ -18,7 +18,9 @@ class ChemistAdmin extends React.Component {
             tableError: false,
             ChemistStore: []
         }
+        this.resetFormState = this.resetFormState.bind(this)
     } 
+
 
     componentDidMount(){
         this.fetchchemChemist();
@@ -47,15 +49,49 @@ class ChemistAdmin extends React.Component {
         })
     }
 
+    resetFormState(){
+        this.setState = {
+            chem:"",
+            loc:"",
+            bsnN:"",
+            disc:"",
+            phone:"",
+            email:"",
+            workhr:"",
+            tableLoading: false,
+            tableError:false
+        }
+
+    }
+
     render(){
         const{
             ChemistStore,
             tableLoading ,
-            tableError
+            tableError,
+            chem,
+            loc,
+            bsnN,
+            disc,
+            phone,
+            email,
+            workhr
+
         } =  this.state;
         return(
             <div className = "table2">
-                <ChemistForm/>
+                <ChemistForm
+                chem = {chem}
+                loc = {loc}
+                bsnN = {bsnN}
+                disc = {disc}
+                phone = {phone}
+                email = {email}
+                workhr = {workhr}
+                resetFormState = {this.resetFormState}
+                />
+
+
                 <ChemistTable
                     ChemistStore = {ChemistStore}
                     tableLoading = {tableLoading}

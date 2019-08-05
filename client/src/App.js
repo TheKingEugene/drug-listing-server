@@ -5,9 +5,10 @@ import Home from "./Home";
 import DrugList from "./DrugList";
 import ChemistList from "./ChemistList";
 import ChemistAdmin from "./ChemistAdmin";
-//import ChemistTable from "ChemistTable";
+import DrugAdmin from "./DrugAdmin";
 import Admin from "./Admin"
 import "./App.css";
+
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <ChemistList path = "/Chemist" />
           <Admin path = "/Admin"/>
           <ChemistAdmin path = "/ChemistAdmin"/>
+          <DrugAdmin path = "/DrugAdmin"/>
         </Router>
       </main>
     </div>

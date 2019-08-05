@@ -14,7 +14,7 @@ function Admin(){
                         <br/>
                         <br/>
             <Link to= "/DrugAdmin">
-            <button id = "moddrug" href = "DrugAdmin">MODIFY DRUG</button>
+            <button id = "moddrug">MODIFY DRUG</button>
             </Link>
             
             
