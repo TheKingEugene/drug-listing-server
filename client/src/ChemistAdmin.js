@@ -92,6 +92,7 @@ class ChemistAdmin extends React.Component {
             chem: chemist,
             loc: location,
             phone: phone_number,
+            email: email,
             workhr: working_hours
 
         })}
