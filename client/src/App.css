@@ -110,7 +110,7 @@ h2, h3, p{
 .addchemist label, input{
   font-weight: bold;
   color: burlywood;
-  margin: 0px;
+  margin-left: 0%;
   font-weight: bold;
   display: block;
 }
@@ -124,11 +124,13 @@ h2, h3, p{
 }
 
 .adddrug{
-  margin-left: 2%
+  margin-left: 6px;
+  margin-top:0cm;
 }
 
 .table{
   padding: 0;
+  margin-left:8px;
   margin-top: 0cm;
   border-collapse: collapse;
 }

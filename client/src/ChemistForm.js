@@ -3,7 +3,7 @@ import React from "react";
 function ChemistForm({chem, loc, bsnN, phone, email, workhr, resetFormState, handleOnChange}){
     return(
         <div className ="addchemist" >
-            <h1>ADD A CHEMIST</h1>
+            <h1>ADD CHEMIST</h1>
             <h2 id = "h2">Enter Chemist Details</h2>
         <label name = "chem"> Chemist Name</label><input type = "text"
         name = "chem" value = {chem} onChange = {handleOnChange}

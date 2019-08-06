@@ -4,7 +4,7 @@ import React from "react";
 function DrugForm ({drgN, drg, disc, manf, phone, resetFormState}){
     return(
         <div className ="adddrug" >
-            <h1>ADD A DRUG</h1>
+            <h1>ADD DRUG</h1>
             <h2 id = "h2">Enter Drug Details</h2>
 
         <label name = "drgN"> Drug Number</label><input type = "text"
